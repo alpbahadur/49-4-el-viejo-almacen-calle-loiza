@@ -36,12 +36,45 @@
             --dark: #2d2d2d;
         }
 
-        /* Navigation */
+        /* Particle canvas */
+        #particleCanvas {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            z-index: 0;
+            pointer-events: none;
+        }
+
+        /* Navigation - transparent at first */
         nav {
+            background: transparent;
+            backdrop-filter: none;
+            transition: all 0.3s ease;
+            border-bottom: none;
+        }
+
+        nav.scrolled {
             background: rgba(255, 255, 255, 0.98);
             backdrop-filter: blur(10px);
-            transition: all 0.3s ease;
             border-bottom: 1px solid #f0f0f0;
+            box-shadow: 0 2px 10px rgba(0,0,0,0.05);
+        }
+
+        nav:not(.scrolled) .nav-link {
+            color: white;
+        }
+
+        nav:not(.scrolled) .btn-primary {
+            background: transparent;
+            color: white;
+            border-color: white;
+        }
+
+        nav:not(.scrolled) .btn-primary:hover {
+            background: white;
+            color: var(--primary);
         }
 
         .nav-link {
@@ -158,16 +191,65 @@
             gap: 1rem;
         }
 
-        /* Timeline */
+        /* Timeline with vertical line */
+        .timeline-container {
+            position: relative;
+            padding-left: 40px;
+        }
+
+        .timeline-line {
+            position: absolute;
+            left: 20px;
+            top: 0;
+            bottom: 0;
+            width: 1px;
+            background: linear-gradient(180deg, var(--primary) 0%, rgba(139, 21, 56, 0.3) 100%);
+        }
+
         .timeline-item {
+            position: relative;
             opacity: 0;
             transform: translateX(-20px);
             transition: opacity 0.6s ease, transform 0.6s ease;
+            padding-left: 30px;
+        }
+
+        .timeline-item::before {
+            content: '';
+            position: absolute;
+            left: 0;
+            top: 8px;
+            width: 8px;
+            height: 8px;
+            background: var(--primary);
+            border-radius: 50%;
+            border: 2px solid white;
+            box-shadow: 0 0 0 2px var(--cream);
         }
 
         .timeline-item.visible {
             opacity: 1;
             transform: translateX(0);
+        }
+
+        @media (min-width: 768px) {
+            .timeline-container {
+                padding-left: 0;
+            }
+
+            .timeline-line {
+                left: 50%;
+                transform: translateX(-50%);
+            }
+
+            .timeline-item {
+                padding-left: 0;
+            }
+
+            .timeline-item::before {
+                left: 50%;
+                transform: translateX(-50%);
+            }
         }
 
         /* Menu card */
@@ -179,6 +261,32 @@
 
         .menu-card:hover {
             border-color: var(--primary);
+        }
+
+        /* Live music section */
+        .live-music-section {
+            background: linear-gradient(135deg, var(--primary) 0%, #6B0E28 100%);
+            color: white;
+            position: relative;
+            overflow: hidden;
+        }
+
+        .live-music-section::before {
+            content: '♪';
+            position: absolute;
+            font-size: 200px;
+            opacity: 0.05;
+            right: -50px;
+            top: 50%;
+            transform: translateY(-50%) rotate(15deg);
+        }
+
+        /* Map container */
+        .map-container {
+            position: relative;
+            background: var(--cream);
+            border-radius: 4px;
+            overflow: hidden;
         }
 
         /* Scroll indicator */
@@ -201,6 +309,9 @@
     </style>
 </head>
 <body>
+    <!-- Particle Canvas -->
+    <canvas id="particleCanvas"></canvas>
+
     <!-- Navigation -->
     <nav id="navbar" class="fixed w-full top-0 z-50">
         <div class="max-w-7xl mx-auto px-6">
@@ -219,7 +330,7 @@
                     <a href="#reservations" class="btn-primary">Reservations</a>
                 </div>
 
-                <button id="mobile-menu-btn" class="md:hidden">
+                <button id="mobile-menu-btn" class="md:hidden text-white">
                     <svg class="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24">
                         <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 6h16M4 12h16M4 18h16"></path>
                     </svg>
@@ -277,7 +388,7 @@
     </section>
 
     <!-- Welcome Section -->
-    <section class="py-24 md:py-32 bg-white">
+    <section class="py-24 md:py-32 bg-white relative z-10">
         <div class="max-w-6xl mx-auto px-6">
             <div class="grid md:grid-cols-2 gap-16 items-center">
                 <div class="fade-in">
@@ -302,8 +413,36 @@
         </div>
     </section>
 
+    <!-- Live Music Section -->
+    <section class="live-music-section py-16 relative z-10">
+        <div class="max-w-6xl mx-auto px-6 relative z-10">
+            <div class="text-center fade-in">
+                <div class="text-5xl mb-4">♪</div>
+                <h2 class="text-3xl md:text-4xl mb-4">Live Tango Every Weekend</h2>
+                <div class="divider" style="background: white;"></div>
+                <p class="text-base md:text-lg mb-6 opacity-90 max-w-2xl mx-auto">
+                    Experience authentic tango and boleros every Friday and Saturday night. Let the soul of Buenos Aires transport you with live music performances.
+                </p>
+                <div class="grid md:grid-cols-3 gap-8 mt-12">
+                    <div>
+                        <h3 class="text-xl mb-2">Friday Nights</h3>
+                        <p class="text-sm opacity-80">Traditional Tango</p>
+                    </div>
+                    <div>
+                        <h3 class="text-xl mb-2">Saturday Nights</h3>
+                        <p class="text-sm opacity-80">Tango & Boleros</p>
+                    </div>
+                    <div>
+                        <h3 class="text-xl mb-2">Authentic</h3>
+                        <p class="text-sm opacity-80">Buenos Aires Experience</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
     <!-- Story Timeline -->
-    <section id="story" class="py-24 md:py-32 bg-[#FFF8F3]">
+    <section id="story" class="py-24 md:py-32 bg-[#FFF8F3] relative z-10">
         <div class="max-w-5xl mx-auto px-6">
             <div class="text-center mb-16 fade-in">
                 <h2 class="text-3xl md:text-4xl mb-4">Our Journey</h2>
@@ -313,23 +452,27 @@
                 </p>
             </div>
 
-            <div class="space-y-16">
+            <div class="timeline-container space-y-16 relative">
+                <div class="timeline-line"></div>
+
                 <div class="timeline-item">
-                    <div class="flex items-start gap-6">
-                        <div class="text-sm text-[#8B1538] font-weight-300 uppercase tracking-widest min-w-[80px]">2010</div>
-                        <div>
+                    <div class="md:flex md:items-start md:gap-6">
+                        <div class="md:w-1/2 md:text-right md:pr-12">
+                            <div class="text-sm text-[#8B1538] font-weight-300 uppercase tracking-widest mb-2">2010</div>
                             <h3 class="text-xl mb-2">The Beginning</h3>
                             <p class="text-gray-600 text-sm leading-relaxed">
                                 Adrián Romano opens El Viejo Almacén, bringing the authentic bodegón experience to Puerto Rico.
                             </p>
                         </div>
+                        <div class="hidden md:block md:w-1/2"></div>
                     </div>
                 </div>
 
                 <div class="timeline-item">
-                    <div class="flex items-start gap-6">
-                        <div class="text-sm text-[#8B1538] font-weight-300 uppercase tracking-widest min-w-[80px]">2017</div>
-                        <div>
+                    <div class="md:flex md:items-start md:gap-6">
+                        <div class="hidden md:block md:w-1/2"></div>
+                        <div class="md:w-1/2 md:pl-12">
+                            <div class="text-sm text-[#8B1538] font-weight-300 uppercase tracking-widest mb-2">2017</div>
                             <h3 class="text-xl mb-2">Resilience</h3>
                             <p class="text-gray-600 text-sm leading-relaxed">
                                 After Hurricane Maria, Adrián and his team sell choripán on the streets to keep the dream alive.
@@ -339,21 +482,23 @@
                 </div>
 
                 <div class="timeline-item">
-                    <div class="flex items-start gap-6">
-                        <div class="text-sm text-[#8B1538] font-weight-300 uppercase tracking-widest min-w-[80px]">2019</div>
-                        <div>
+                    <div class="md:flex md:items-start md:gap-6">
+                        <div class="md:w-1/2 md:text-right md:pr-12">
+                            <div class="text-sm text-[#8B1538] font-weight-300 uppercase tracking-widest mb-2">2019</div>
                             <h3 class="text-xl mb-2">Expansion</h3>
                             <p class="text-gray-600 text-sm leading-relaxed">
                                 Opening of second location in Guaynabo.
                             </p>
                         </div>
+                        <div class="hidden md:block md:w-1/2"></div>
                     </div>
                 </div>
 
                 <div class="timeline-item">
-                    <div class="flex items-start gap-6">
-                        <div class="text-sm text-[#8B1538] font-weight-300 uppercase tracking-widest min-w-[80px]">2020</div>
-                        <div>
+                    <div class="md:flex md:items-start md:gap-6">
+                        <div class="hidden md:block md:w-1/2"></div>
+                        <div class="md:w-1/2 md:pl-12">
+                            <div class="text-sm text-[#8B1538] font-weight-300 uppercase tracking-widest mb-2">2020</div>
                             <h3 class="text-xl mb-2">Reimagined</h3>
                             <p class="text-gray-600 text-sm leading-relaxed">
                                 Calle Loiza location reopens with a fresh, redesigned space at 1604 Calle Loiza.
@@ -363,14 +508,15 @@
                 </div>
 
                 <div class="timeline-item">
-                    <div class="flex items-start gap-6">
-                        <div class="text-sm text-[#8B1538] font-weight-300 uppercase tracking-widest min-w-[80px]">Today</div>
-                        <div>
+                    <div class="md:flex md:items-start md:gap-6">
+                        <div class="md:w-1/2 md:text-right md:pr-12">
+                            <div class="text-sm text-[#8B1538] font-weight-300 uppercase tracking-widest mb-2">Today</div>
                             <h3 class="text-xl mb-2">A Culinary Landmark</h3>
                             <p class="text-gray-600 text-sm leading-relaxed">
                                 Continuing to thrive with authentic cuisine, live tango music, and traditional hospitality.
                             </p>
                         </div>
+                        <div class="hidden md:block md:w-1/2"></div>
                     </div>
                 </div>
             </div>
@@ -378,7 +524,7 @@
     </section>
 
     <!-- Chef Section -->
-    <section class="py-24 md:py-32 bg-white">
+    <section class="py-24 md:py-32 bg-white relative z-10">
         <div class="max-w-6xl mx-auto px-6">
             <div class="grid md:grid-cols-2 gap-16 items-center">
                 <div class="fade-in image-container order-2 md:order-1">
@@ -404,7 +550,7 @@
     </section>
 
     <!-- Menu Section -->
-    <section id="menu" class="py-24 md:py-32 bg-[#FFF8F3]">
+    <section id="menu" class="py-24 md:py-32 bg-[#FFF8F3] relative z-10">
         <div class="max-w-7xl mx-auto px-6">
             <div class="text-center mb-16 fade-in">
                 <h2 class="text-3xl md:text-4xl mb-4">Menu</h2>
@@ -462,7 +608,7 @@
     </section>
 
     <!-- Gallery Section -->
-    <section id="gallery" class="py-24 md:py-32 bg-white">
+    <section id="gallery" class="py-24 md:py-32 bg-white relative z-10">
         <div class="max-w-7xl mx-auto px-6">
             <div class="text-center mb-16 fade-in">
                 <h2 class="text-3xl md:text-4xl mb-4">Gallery</h2>
@@ -494,15 +640,12 @@
                 <div class="fade-in image-container h-72">
                     <img src="./images/insta-DQZwwSfkkDW.jpg" alt="Gnocchi" class="image-zoom">
                 </div>
-                <div class="fade-in image-container h-72">
-                    <img src="./images/insta-DQw82DFktKC.jpg" alt="Patio" class="image-zoom">
-                </div>
             </div>
         </div>
     </section>
 
     <!-- Private Events -->
-    <section id="private" class="py-24 md:py-32 bg-[#FFF8F3]">
+    <section id="private" class="py-24 md:py-32 bg-[#FFF8F3] relative z-10">
         <div class="max-w-6xl mx-auto px-6">
             <div class="grid md:grid-cols-2 gap-16 items-center">
                 <div class="fade-in">
@@ -520,14 +663,51 @@
                     <a href="#reservations" class="btn-primary">Inquire About Events</a>
                 </div>
                 <div class="fade-in image-container">
-                    <img src="./images/insta-DQnKpmCkr0Q.jpg" alt="Private Events" class="image-zoom">
+                    <img src="./images/insta-DQc-Vw5gYq1.jpg" alt="Private Events" class="image-zoom">
                 </div>
             </div>
         </div>
     </section>
 
+    <!-- Map Section -->
+    <section class="py-24 md:py-32 bg-white relative z-10">
+        <div class="max-w-6xl mx-auto px-6">
+            <div class="text-center mb-16 fade-in">
+                <h2 class="text-3xl md:text-4xl mb-4">From Buenos Aires to San Juan</h2>
+                <div class="divider"></div>
+                <p class="text-base text-gray-600">
+                    Bridging two worlds through authentic cuisine
+                </p>
+            </div>
+
+            <div class="map-container p-8 md:p-12 fade-in">
+                <svg viewBox="0 0 800 400" class="w-full h-auto">
+                    <!-- Argentina -->
+                    <circle cx="200" cy="320" r="8" fill="#8B1538"/>
+                    <text x="200" y="345" text-anchor="middle" fill="#2d2d2d" font-size="14" font-weight="300">Buenos Aires</text>
+                    <text x="200" y="360" text-anchor="middle" fill="#8B1538" font-size="12" font-weight="300">Argentina</text>
+
+                    <!-- Puerto Rico -->
+                    <circle cx="600" cy="200" r="8" fill="#8B1538"/>
+                    <text x="600" y="225" text-anchor="middle" fill="#2d2d2d" font-size="14" font-weight="300">San Juan</text>
+                    <text x="600" y="240" text-anchor="middle" fill="#8B1538" font-size="12" font-weight="300">Puerto Rico</text>
+
+                    <!-- Connection line -->
+                    <path d="M 200 320 Q 400 100 600 200" stroke="#8B1538" stroke-width="1" fill="none" stroke-dasharray="5,5" opacity="0.5"/>
+
+                    <!-- Decorative elements -->
+                    <path d="M 190 310 L 200 320 L 210 310" stroke="#8B1538" stroke-width="1" fill="none"/>
+                    <path d="M 590 190 L 600 200 L 610 190" stroke="#8B1538" stroke-width="1" fill="none"/>
+
+                    <!-- Center text -->
+                    <text x="400" y="200" text-anchor="middle" fill="#2d2d2d" font-size="16" font-weight="300" opacity="0.7">Traditional Bodegón Culture</text>
+                </svg>
+            </div>
+        </div>
+    </section>
+
     <!-- Reservations -->
-    <section id="reservations" class="py-24 md:py-32 bg-white">
+    <section id="reservations" class="py-24 md:py-32 bg-[#FFF8F3] relative z-10">
         <div class="max-w-6xl mx-auto px-6">
             <div class="text-center mb-16 fade-in">
                 <h2 class="text-3xl md:text-4xl mb-4">Reservations</h2>
@@ -552,13 +732,6 @@
                             <a href="https://www.facebook.com/elviejoalmacenpuertorico/" target="_blank" class="text-[#8B1538] hover:underline">Facebook</a>
                         </div>
                     </div>
-
-                    <div class="mt-8 p-6 bg-[#FFF8F3] border-l border-[#8B1538]">
-                        <h4 class="text-sm uppercase tracking-widest mb-2">Live Music Weekends</h4>
-                        <p class="text-sm text-gray-600">
-                            Experience authentic tango and boleros every Friday and Saturday night.
-                        </p>
-                    </div>
                 </div>
 
                 <div>
@@ -578,7 +751,7 @@
     </section>
 
     <!-- Footer -->
-    <footer class="py-16 bg-[#2d2d2d] text-white">
+    <footer class="py-16 bg-[#2d2d2d] text-white relative z-10">
         <div class="max-w-7xl mx-auto px-6">
             <div class="grid md:grid-cols-3 gap-12 mb-12 text-sm">
                 <div>
@@ -616,10 +789,64 @@
 
     <!-- JavaScript -->
     <script>
+        // Particle Effect
+        const canvas = document.getElementById('particleCanvas');
+        const ctx = canvas.getContext('2d');
+        canvas.width = window.innerWidth;
+        canvas.height = window.innerHeight;
+
+        window.addEventListener('resize', () => {
+            canvas.width = window.innerWidth;
+            canvas.height = window.innerHeight;
+        });
+
+        class Particle {
+            constructor() {
+                this.x = Math.random() * canvas.width;
+                this.y = Math.random() * canvas.height;
+                this.size = Math.random() * 2 + 0.5;
+                this.speedX = Math.random() * 0.5 - 0.25;
+                this.speedY = Math.random() * 0.5 - 0.25;
+                this.opacity = Math.random() * 0.15 + 0.05;
+            }
+
+            update() {
+                this.x += this.speedX;
+                this.y += this.speedY;
+
+                if (this.x > canvas.width || this.x < 0) this.speedX *= -1;
+                if (this.y > canvas.height || this.y < 0) this.speedY *= -1;
+            }
+
+            draw() {
+                ctx.fillStyle = `rgba(139, 21, 56, ${this.opacity})`;
+                ctx.beginPath();
+                ctx.arc(this.x, this.y, this.size, 0, Math.PI * 2);
+                ctx.fill();
+            }
+        }
+
+        const particles = [];
+        for (let i = 0; i < 50; i++) {
+            particles.push(new Particle());
+        }
+
+        function animateParticles() {
+            ctx.clearRect(0, 0, canvas.width, canvas.height);
+            particles.forEach(particle => {
+                particle.update();
+                particle.draw();
+            });
+            requestAnimationFrame(animateParticles);
+        }
+
+        animateParticles();
+
         // Mobile Menu
         const mobileMenuBtn = document.getElementById('mobile-menu-btn');
         const mobileMenu = document.getElementById('mobile-menu');
         const closeMenuBtn = document.getElementById('close-menu-btn');
+        const navbar = document.getElementById('navbar');
 
         mobileMenuBtn.addEventListener('click', () => {
             mobileMenu.classList.add('active');
@@ -633,6 +860,19 @@
             link.addEventListener('click', () => {
                 mobileMenu.classList.remove('active');
             });
+        });
+
+        // Navbar scroll effect
+        window.addEventListener('scroll', () => {
+            if (window.scrollY > 100) {
+                navbar.classList.add('scrolled');
+                mobileMenuBtn.classList.remove('text-white');
+                mobileMenuBtn.classList.add('text-gray-900');
+            } else {
+                navbar.classList.remove('scrolled');
+                mobileMenuBtn.classList.remove('text-gray-900');
+                mobileMenuBtn.classList.add('text-white');
+            }
         });
 
         // Scroll animations
