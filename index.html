@@ -281,14 +281,6 @@
             transform: translateY(-50%) rotate(15deg);
         }
 
-        /* Map container */
-        .map-container {
-            position: relative;
-            background: var(--cream);
-            border-radius: 4px;
-            overflow: hidden;
-        }
-
         /* Scroll indicator */
         @keyframes bounce {
             0%, 20%, 50%, 80%, 100% { transform: translateY(0); }
@@ -551,7 +543,7 @@
 
     <!-- Menu Section -->
     <section id="menu" class="py-24 md:py-32 bg-[#FFF8F3] relative z-10">
-        <div class="max-w-7xl mx-auto px-6">
+        <div class="max-w-5xl mx-auto px-6">
             <div class="text-center mb-16 fade-in">
                 <h2 class="text-3xl md:text-4xl mb-4">Menu</h2>
                 <div class="divider"></div>
@@ -560,47 +552,170 @@
                 </p>
             </div>
 
-            <div class="grid md:grid-cols-3 gap-8 mb-16">
-                <div class="menu-card fade-in">
-                    <div class="image-container h-64">
-                        <img src="./images/insta-DRNyjFWj7ps.jpg" alt="Parrilladas" class="image-zoom">
+            <!-- Appetizers -->
+            <div class="mb-16 fade-in">
+                <h3 class="text-2xl mb-8 text-center">Entradas / Appetizers</h3>
+                <div class="space-y-6">
+                    <div class="flex justify-between items-start border-b border-gray-200 pb-4">
+                        <div class="flex-1">
+                            <h4 class="text-base mb-1">Empanadas Argentinas</h4>
+                            <p class="text-sm text-gray-600">Traditional hand-folded pastries filled with beef, chicken, or ham & cheese</p>
+                        </div>
+                        <span class="text-[#8B1538] ml-4 whitespace-nowrap">$8</span>
                     </div>
-                    <div class="p-6">
-                        <h3 class="text-xl mb-3">Parrilladas</h3>
-                        <p class="text-sm text-gray-600 leading-relaxed">
-                            Signature grilled meats including churrasco and entraña, served with chimichurri.
-                        </p>
+                    <div class="flex justify-between items-start border-b border-gray-200 pb-4">
+                        <div class="flex-1">
+                            <h4 class="text-base mb-1">Provoleta</h4>
+                            <p class="text-sm text-gray-600">Grilled provolone cheese with oregano and chili flakes</p>
+                        </div>
+                        <span class="text-[#8B1538] ml-4 whitespace-nowrap">$12</span>
+                    </div>
+                    <div class="flex justify-between items-start border-b border-gray-200 pb-4">
+                        <div class="flex-1">
+                            <h4 class="text-base mb-1">Choripán</h4>
+                            <p class="text-sm text-gray-600">Argentinian chorizo on crusty bread with chimichurri</p>
+                        </div>
+                        <span class="text-[#8B1538] ml-4 whitespace-nowrap">$10</span>
+                    </div>
+                    <div class="flex justify-between items-start border-b border-gray-200 pb-4">
+                        <div class="flex-1">
+                            <h4 class="text-base mb-1">Tabla de Fiambres</h4>
+                            <p class="text-sm text-gray-600">Charcuterie board with cured meats, cheeses, and olives</p>
+                        </div>
+                        <span class="text-[#8B1538] ml-4 whitespace-nowrap">$18</span>
                     </div>
                 </div>
+            </div>
 
-                <div class="menu-card fade-in">
-                    <div class="image-container h-64">
-                        <img src="./images/fb-6b361ffa8864.jpg" alt="Milanesas" class="image-zoom">
+            <!-- Parrilladas -->
+            <div class="mb-16 fade-in">
+                <h3 class="text-2xl mb-8 text-center">Parrilladas / Grilled Meats</h3>
+                <div class="space-y-6">
+                    <div class="flex justify-between items-start border-b border-gray-200 pb-4">
+                        <div class="flex-1">
+                            <h4 class="text-base mb-1">Bife de Chorizo</h4>
+                            <p class="text-sm text-gray-600">12oz New York strip steak with chimichurri and papas fritas</p>
+                        </div>
+                        <span class="text-[#8B1538] ml-4 whitespace-nowrap">$32</span>
                     </div>
-                    <div class="p-6">
-                        <h3 class="text-xl mb-3">Milanesas</h3>
-                        <p class="text-sm text-gray-600 leading-relaxed">
-                            Generous portions of breaded cutlets. Try the milanesa napolitana.
-                        </p>
+                    <div class="flex justify-between items-start border-b border-gray-200 pb-4">
+                        <div class="flex-1">
+                            <h4 class="text-base mb-1">Entraña</h4>
+                            <p class="text-sm text-gray-600">Grilled skirt steak, a bodegón classic, served with grilled vegetables</p>
+                        </div>
+                        <span class="text-[#8B1538] ml-4 whitespace-nowrap">$28</span>
+                    </div>
+                    <div class="flex justify-between items-start border-b border-gray-200 pb-4">
+                        <div class="flex-1">
+                            <h4 class="text-base mb-1">Cordero al Malbec</h4>
+                            <p class="text-sm text-gray-600">Lamb shank braised in Malbec wine with root vegetables</p>
+                        </div>
+                        <span class="text-[#8B1538] ml-4 whitespace-nowrap">$36</span>
+                    </div>
+                    <div class="flex justify-between items-start border-b border-gray-200 pb-4">
+                        <div class="flex-1">
+                            <h4 class="text-base mb-1">Parrillada para Dos</h4>
+                            <p class="text-sm text-gray-600">Mixed grill for two with chorizo, morcilla, short ribs, and sweetbreads</p>
+                        </div>
+                        <span class="text-[#8B1538] ml-4 whitespace-nowrap">$68</span>
                     </div>
                 </div>
+            </div>
 
-                <div class="menu-card fade-in">
-                    <div class="image-container h-64">
-                        <img src="./images/insta-DQ7tjQ0DGc1.jpg" alt="Pastas" class="image-zoom">
+            <!-- Milanesas -->
+            <div class="mb-16 fade-in">
+                <h3 class="text-2xl mb-8 text-center">Milanesas</h3>
+                <div class="space-y-6">
+                    <div class="flex justify-between items-start border-b border-gray-200 pb-4">
+                        <div class="flex-1">
+                            <h4 class="text-base mb-1">Milanesa Napolitana</h4>
+                            <p class="text-sm text-gray-600">Breaded beef cutlet topped with ham, mozzarella, and tomato sauce</p>
+                        </div>
+                        <span class="text-[#8B1538] ml-4 whitespace-nowrap">$24</span>
                     </div>
-                    <div class="p-6">
-                        <h3 class="text-xl mb-3">Homemade Pastas</h3>
-                        <p class="text-sm text-gray-600 leading-relaxed">
-                            Handcrafted pastas made fresh daily, celebrating Italian-Argentinian heritage.
-                        </p>
+                    <div class="flex justify-between items-start border-b border-gray-200 pb-4">
+                        <div class="flex-1">
+                            <h4 class="text-base mb-1">Milanesa de Pollo</h4>
+                            <p class="text-sm text-gray-600">Classic breaded chicken cutlet with lemon and mixed greens</p>
+                        </div>
+                        <span class="text-[#8B1538] ml-4 whitespace-nowrap">$22</span>
+                    </div>
+                    <div class="flex justify-between items-start border-b border-gray-200 pb-4">
+                        <div class="flex-1">
+                            <h4 class="text-base mb-1">Milanesa a Caballo</h4>
+                            <p class="text-sm text-gray-600">Beef milanesa topped with two fried eggs</p>
+                        </div>
+                        <span class="text-[#8B1538] ml-4 whitespace-nowrap">$26</span>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Pastas -->
+            <div class="mb-16 fade-in">
+                <h3 class="text-2xl mb-8 text-center">Pastas Caseras / Homemade Pastas</h3>
+                <div class="space-y-6">
+                    <div class="flex justify-between items-start border-b border-gray-200 pb-4">
+                        <div class="flex-1">
+                            <h4 class="text-base mb-1">Ñoquis de Papa</h4>
+                            <p class="text-sm text-gray-600">Potato gnocchi with choice of tuco, pesto, or four cheese sauce</p>
+                        </div>
+                        <span class="text-[#8B1538] ml-4 whitespace-nowrap">$18</span>
+                    </div>
+                    <div class="flex justify-between items-start border-b border-gray-200 pb-4">
+                        <div class="flex-1">
+                            <h4 class="text-base mb-1">Ravioles de Ricota y Espinaca</h4>
+                            <p class="text-sm text-gray-600">Ricotta and spinach ravioli with sage butter sauce</p>
+                        </div>
+                        <span class="text-[#8B1538] ml-4 whitespace-nowrap">$20</span>
+                    </div>
+                    <div class="flex justify-between items-start border-b border-gray-200 pb-4">
+                        <div class="flex-1">
+                            <h4 class="text-base mb-1">Sorrentinos de Jamón y Queso</h4>
+                            <p class="text-sm text-gray-600">Ham and cheese sorrentinos with tomato cream sauce</p>
+                        </div>
+                        <span class="text-[#8B1538] ml-4 whitespace-nowrap">$22</span>
+                    </div>
+                    <div class="flex justify-between items-start border-b border-gray-200 pb-4">
+                        <div class="flex-1">
+                            <h4 class="text-base mb-1">Tallarines con Tuco</h4>
+                            <p class="text-sm text-gray-600">Fresh tagliatelle with traditional Argentinian tomato sauce</p>
+                        </div>
+                        <span class="text-[#8B1538] ml-4 whitespace-nowrap">$16</span>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Desserts -->
+            <div class="mb-16 fade-in">
+                <h3 class="text-2xl mb-8 text-center">Postres / Desserts</h3>
+                <div class="space-y-6">
+                    <div class="flex justify-between items-start border-b border-gray-200 pb-4">
+                        <div class="flex-1">
+                            <h4 class="text-base mb-1">Flan Casero</h4>
+                            <p class="text-sm text-gray-600">Homemade caramel flan with dulce de leche</p>
+                        </div>
+                        <span class="text-[#8B1538] ml-4 whitespace-nowrap">$8</span>
+                    </div>
+                    <div class="flex justify-between items-start border-b border-gray-200 pb-4">
+                        <div class="flex-1">
+                            <h4 class="text-base mb-1">Panqueques con Dulce de Leche</h4>
+                            <p class="text-sm text-gray-600">Crepes filled with dulce de leche and topped with whipped cream</p>
+                        </div>
+                        <span class="text-[#8B1538] ml-4 whitespace-nowrap">$10</span>
+                    </div>
+                    <div class="flex justify-between items-start border-b border-gray-200 pb-4">
+                        <div class="flex-1">
+                            <h4 class="text-base mb-1">Alfajores</h4>
+                            <p class="text-sm text-gray-600">Traditional shortbread cookies filled with dulce de leche</p>
+                        </div>
+                        <span class="text-[#8B1538] ml-4 whitespace-nowrap">$6</span>
                     </div>
                 </div>
             </div>
 
             <div class="text-center fade-in">
                 <p class="text-sm text-gray-600 mb-6">
-                    $12 Lunch Special Available
+                    $12 Lunch Special Available Monday - Friday
                 </p>
                 <a href="#reservations" class="btn-primary">Make a Reservation</a>
             </div>
@@ -665,43 +780,6 @@
                 <div class="fade-in image-container">
                     <img src="./images/insta-DQc-Vw5gYq1.jpg" alt="Private Events" class="image-zoom">
                 </div>
-            </div>
-        </div>
-    </section>
-
-    <!-- Map Section -->
-    <section class="py-24 md:py-32 bg-white relative z-10">
-        <div class="max-w-6xl mx-auto px-6">
-            <div class="text-center mb-16 fade-in">
-                <h2 class="text-3xl md:text-4xl mb-4">From Buenos Aires to San Juan</h2>
-                <div class="divider"></div>
-                <p class="text-base text-gray-600">
-                    Bridging two worlds through authentic cuisine
-                </p>
-            </div>
-
-            <div class="map-container p-8 md:p-12 fade-in">
-                <svg viewBox="0 0 800 400" class="w-full h-auto">
-                    <!-- Argentina -->
-                    <circle cx="200" cy="320" r="8" fill="#8B1538"/>
-                    <text x="200" y="345" text-anchor="middle" fill="#2d2d2d" font-size="14" font-weight="300">Buenos Aires</text>
-                    <text x="200" y="360" text-anchor="middle" fill="#8B1538" font-size="12" font-weight="300">Argentina</text>
-
-                    <!-- Puerto Rico -->
-                    <circle cx="600" cy="200" r="8" fill="#8B1538"/>
-                    <text x="600" y="225" text-anchor="middle" fill="#2d2d2d" font-size="14" font-weight="300">San Juan</text>
-                    <text x="600" y="240" text-anchor="middle" fill="#8B1538" font-size="12" font-weight="300">Puerto Rico</text>
-
-                    <!-- Connection line -->
-                    <path d="M 200 320 Q 400 100 600 200" stroke="#8B1538" stroke-width="1" fill="none" stroke-dasharray="5,5" opacity="0.5"/>
-
-                    <!-- Decorative elements -->
-                    <path d="M 190 310 L 200 320 L 210 310" stroke="#8B1538" stroke-width="1" fill="none"/>
-                    <path d="M 590 190 L 600 200 L 610 190" stroke="#8B1538" stroke-width="1" fill="none"/>
-
-                    <!-- Center text -->
-                    <text x="400" y="200" text-anchor="middle" fill="#2d2d2d" font-size="16" font-weight="300" opacity="0.7">Traditional Bodegón Culture</text>
-                </svg>
             </div>
         </div>
     </section>
@@ -804,10 +882,10 @@
             constructor() {
                 this.x = Math.random() * canvas.width;
                 this.y = Math.random() * canvas.height;
-                this.size = Math.random() * 2 + 0.5;
+                this.size = Math.random() * 3 + 1;
                 this.speedX = Math.random() * 0.5 - 0.25;
                 this.speedY = Math.random() * 0.5 - 0.25;
-                this.opacity = Math.random() * 0.15 + 0.05;
+                this.opacity = Math.random() * 0.3 + 0.15;
             }
 
             update() {
@@ -827,7 +905,7 @@
         }
 
         const particles = [];
-        for (let i = 0; i < 50; i++) {
+        for (let i = 0; i < 100; i++) {
             particles.push(new Particle());
         }
 
