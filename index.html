@@ -837,7 +837,7 @@
                 <div class="divider"></div>
             </div>
 
-            <div class="grid md:grid-cols-2 gap-12 fade-in">
+            <div class="grid md:grid-cols-2 gap-12 fade-in items-center">
                 <div>
                     <h3 class="text-xl mb-6">Contact</h3>
                     <div class="space-y-6 text-sm">
@@ -857,7 +857,7 @@
                     </div>
                 </div>
 
-                <div class="flex flex-col justify-center">
+                <div>
                     <div class="mb-8">
                         <p class="text-xs uppercase tracking-widest text-gray-500 mb-4">Hours</p>
                         <div class="space-y-2 text-base">
@@ -935,10 +935,10 @@
             constructor() {
                 this.x = Math.random() * canvas.width;
                 this.y = Math.random() * canvas.height;
-                this.size = Math.random() * 1.5 + 1;
-                this.speedX = Math.random() * 0.4 - 0.2;
-                this.speedY = Math.random() * 0.4 - 0.2;
-                this.opacity = Math.random() * 0.08 + 0.08;
+                this.size = Math.random() * 2 + 1.5;
+                this.speedX = Math.random() * 0.5 - 0.25;
+                this.speedY = Math.random() * 0.5 - 0.25;
+                this.opacity = Math.random() * 0.12 + 0.12;
             }
 
             update() {
@@ -958,7 +958,7 @@
         }
 
         const particles = [];
-        for (let i = 0; i < 50; i++) {
+        for (let i = 0; i < 65; i++) {
             particles.push(new Particle());
         }
 
