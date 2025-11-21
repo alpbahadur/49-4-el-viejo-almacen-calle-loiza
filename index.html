@@ -263,6 +263,47 @@
             border-color: var(--primary);
         }
 
+        /* Menu categories */
+        .menu-categories {
+            display: flex;
+            justify-content: center;
+            flex-wrap: wrap;
+            gap: 1rem;
+            margin-bottom: 3rem;
+        }
+
+        .menu-category-btn {
+            padding: 0.75rem 1.5rem;
+            border: 1px solid #e5e5e5;
+            background: white;
+            color: var(--dark);
+            font-size: 0.875rem;
+            font-weight: 300;
+            text-transform: uppercase;
+            letter-spacing: 1px;
+            cursor: pointer;
+            transition: all 0.3s ease;
+        }
+
+        .menu-category-btn:hover {
+            border-color: var(--primary);
+            color: var(--primary);
+        }
+
+        .menu-category-btn.active {
+            background: var(--primary);
+            color: white;
+            border-color: var(--primary);
+        }
+
+        .menu-content {
+            display: none;
+        }
+
+        .menu-content.active {
+            display: block;
+        }
+
         /* Live music section */
         .live-music-section {
             background: linear-gradient(135deg, var(--primary) 0%, #6B0E28 100%);
@@ -382,7 +423,7 @@
     <!-- Welcome Section -->
     <section class="py-24 md:py-32 bg-white relative z-10">
         <div class="max-w-6xl mx-auto px-6">
-            <div class="grid md:grid-cols-2 gap-16 items-center">
+            <div class="grid md:grid-cols-2 gap-16 items-center mb-16">
                 <div class="fade-in">
                     <h2 class="text-3xl md:text-4xl mb-4">
                         Bienvenidos
@@ -401,6 +442,9 @@
                 <div class="fade-in image-container">
                     <img src="./images/insta-DRK-ro6ksgx.jpg" alt="Interior" class="image-zoom">
                 </div>
+            </div>
+            <div class="fade-in image-container">
+                <img src="./images/insta-DQ-WOGADmK9.jpg" alt="Restaurant Atmosphere" class="image-zoom w-full h-96 object-cover">
             </div>
         </div>
     </section>
@@ -552,8 +596,17 @@
                 </p>
             </div>
 
+            <!-- Menu Categories -->
+            <div class="menu-categories fade-in">
+                <button class="menu-category-btn active" data-category="appetizers">Appetizers</button>
+                <button class="menu-category-btn" data-category="parrilladas">Grilled Meats</button>
+                <button class="menu-category-btn" data-category="milanesas">Milanesas</button>
+                <button class="menu-category-btn" data-category="pastas">Pastas</button>
+                <button class="menu-category-btn" data-category="desserts">Desserts</button>
+            </div>
+
             <!-- Appetizers -->
-            <div class="mb-16 fade-in">
+            <div class="menu-content active fade-in" id="appetizers">
                 <h3 class="text-2xl mb-8 text-center">Entradas / Appetizers</h3>
                 <div class="space-y-6">
                     <div class="flex justify-between items-start border-b border-gray-200 pb-4">
@@ -588,7 +641,7 @@
             </div>
 
             <!-- Parrilladas -->
-            <div class="mb-16 fade-in">
+            <div class="menu-content fade-in" id="parrilladas">
                 <h3 class="text-2xl mb-8 text-center">Parrilladas / Grilled Meats</h3>
                 <div class="space-y-6">
                     <div class="flex justify-between items-start border-b border-gray-200 pb-4">
@@ -623,7 +676,7 @@
             </div>
 
             <!-- Milanesas -->
-            <div class="mb-16 fade-in">
+            <div class="menu-content fade-in" id="milanesas">
                 <h3 class="text-2xl mb-8 text-center">Milanesas</h3>
                 <div class="space-y-6">
                     <div class="flex justify-between items-start border-b border-gray-200 pb-4">
@@ -651,7 +704,7 @@
             </div>
 
             <!-- Pastas -->
-            <div class="mb-16 fade-in">
+            <div class="menu-content fade-in" id="pastas">
                 <h3 class="text-2xl mb-8 text-center">Pastas Caseras / Homemade Pastas</h3>
                 <div class="space-y-6">
                     <div class="flex justify-between items-start border-b border-gray-200 pb-4">
@@ -686,7 +739,7 @@
             </div>
 
             <!-- Desserts -->
-            <div class="mb-16 fade-in">
+            <div class="menu-content fade-in" id="desserts">
                 <h3 class="text-2xl mb-8 text-center">Postres / Desserts</h3>
                 <div class="space-y-6">
                     <div class="flex justify-between items-start border-b border-gray-200 pb-4">
@@ -713,7 +766,7 @@
                 </div>
             </div>
 
-            <div class="text-center fade-in">
+            <div class="text-center fade-in mt-12">
                 <p class="text-sm text-gray-600 mb-6">
                     $12 Lunch Special Available Monday - Friday
                 </p>
@@ -795,33 +848,41 @@
             <div class="grid md:grid-cols-2 gap-12 fade-in">
                 <div>
                     <h3 class="text-xl mb-6">Contact</h3>
-                    <div class="space-y-4 text-sm">
+                    <div class="space-y-6 text-sm">
                         <div>
-                            <p class="text-xs uppercase tracking-widest text-gray-500 mb-1">Location</p>
-                            <p>1604 Calle Loiza</p>
-                            <p>San Juan, 00911</p>
+                            <p class="text-xs uppercase tracking-widest text-gray-500 mb-2">Location</p>
+                            <p class="text-base">1604 Calle Loíza</p>
+                            <p class="text-base">San Juan, Puerto Rico</p>
                         </div>
                         <div>
-                            <p class="text-xs uppercase tracking-widest text-gray-500 mb-1">Phone</p>
-                            <a href="tel:787-200-8227" class="text-[#8B1538] hover:underline">(787) 200-8227</a>
+                            <p class="text-xs uppercase tracking-widest text-gray-500 mb-2">Phone</p>
+                            <a href="tel:787-200-8227" class="text-base text-[#8B1538] hover:underline">(787) 200-8227</a>
                         </div>
                         <div>
-                            <p class="text-xs uppercase tracking-widest text-gray-500 mb-1">Follow</p>
-                            <a href="https://www.facebook.com/elviejoalmacenpuertorico/" target="_blank" class="text-[#8B1538] hover:underline">Facebook</a>
+                            <p class="text-xs uppercase tracking-widest text-gray-500 mb-2">Social</p>
+                            <a href="https://www.facebook.com/elviejoalmacenpuertorico/" target="_blank" class="text-base text-[#8B1538] hover:underline">Facebook</a>
+                        </div>
+                        <div>
+                            <p class="text-xs uppercase tracking-widest text-gray-500 mb-2">Hours</p>
+                            <div class="space-y-1">
+                                <p class="text-base">Monday - Thursday: 5:00 PM - 10:00 PM</p>
+                                <p class="text-base">Friday - Saturday: 5:00 PM - 11:00 PM</p>
+                                <p class="text-base">Sunday: 12:00 PM - 9:00 PM</p>
+                            </div>
+                            <p class="text-sm text-[#8B1538] mt-3">Live music on Friday & Saturday evenings</p>
                         </div>
                     </div>
                 </div>
 
                 <div>
-                    <h3 class="text-xl mb-6">Visit Us</h3>
-                    <p class="text-sm text-gray-600 mb-6 leading-relaxed">
-                        Located in the vibrant Calle Loiza neighborhood. Reservations recommended.
+                    <p class="text-base text-gray-600 mb-6 leading-relaxed">
+                        We recommend making reservations, especially for weekend evenings with live music. Walk-ins are welcome based on availability.
                     </p>
-                    <div class="space-y-4 text-center">
-                        <a href="tel:787-200-8227" class="btn-primary block">Call to Reserve</a>
-                        <p class="text-xs text-gray-500">
-                            Also visit our Guaynabo location
-                        </p>
+                    <p class="text-base text-gray-600 mb-8 leading-relaxed">
+                        Lunch specials available for $12
+                    </p>
+                    <div class="space-y-4">
+                        <a href="tel:787-200-8227" class="btn-primary block text-center">Call to Reserve</a>
                     </div>
                 </div>
             </div>
@@ -882,10 +943,10 @@
             constructor() {
                 this.x = Math.random() * canvas.width;
                 this.y = Math.random() * canvas.height;
-                this.size = Math.random() * 3 + 1;
-                this.speedX = Math.random() * 0.5 - 0.25;
-                this.speedY = Math.random() * 0.5 - 0.25;
-                this.opacity = Math.random() * 0.3 + 0.15;
+                this.size = Math.random() * 4 + 2;
+                this.speedX = Math.random() * 1 - 0.5;
+                this.speedY = Math.random() * 1 - 0.5;
+                this.opacity = Math.random() * 0.4 + 0.3;
             }
 
             update() {
@@ -905,7 +966,7 @@
         }
 
         const particles = [];
-        for (let i = 0; i < 100; i++) {
+        for (let i = 0; i < 150; i++) {
             particles.push(new Particle());
         }
 
@@ -919,6 +980,25 @@
         }
 
         animateParticles();
+
+        // Menu Categories
+        const menuCategoryBtns = document.querySelectorAll('.menu-category-btn');
+        const menuContents = document.querySelectorAll('.menu-content');
+
+        menuCategoryBtns.forEach(btn => {
+            btn.addEventListener('click', () => {
+                // Remove active class from all buttons
+                menuCategoryBtns.forEach(b => b.classList.remove('active'));
+                // Add active class to clicked button
+                btn.classList.add('active');
+
+                // Hide all menu content
+                menuContents.forEach(content => content.classList.remove('active'));
+                // Show selected menu content
+                const category = btn.getAttribute('data-category');
+                document.getElementById(category).classList.add('active');
+            });
+        });
 
         // Mobile Menu
         const mobileMenuBtn = document.getElementById('mobile-menu-btn');
